@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {fetchUsers} from "../../store/action-creators/users";
+import {fetchUsers} from "../../store/action-creators/usersAC";
 
 const Users: React.FC = () => {
     const {users, error, isLoading} = useAppSelector(state => state.users)
