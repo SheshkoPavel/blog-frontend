@@ -1,3 +1,10 @@
-.App {
-    background: #aaafff;
+/*.App {      Прижать footer к низу страницы
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}*/
+
+.content {
+    background: white;
 }
