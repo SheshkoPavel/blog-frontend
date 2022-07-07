@@ -24,6 +24,7 @@ const Comments = (props: any) => {
 
     return (
         <section style={{textAlign: 'left', marginTop: 30}}>
+
             <div>Comments:</div>
             <div>
                 {commentsElements}

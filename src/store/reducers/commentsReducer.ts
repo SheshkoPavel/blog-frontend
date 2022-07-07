@@ -1,4 +1,4 @@
-import {CommentsActions, CommentsActionTypes, ICommentsState} from "../../types/commentsTypes";
+import {CommentsActions, CommentsActionTypes, commentsArray, ICommentsState} from "../../types/commentsTypes";
 import {Dispatch} from "redux";
 import axios from "axios";
 
@@ -30,7 +30,13 @@ export const commentsReducer = (state = initialState, action: any): ICommentsSta
                 isLoading: false,
                 error: action.payload
             }
-
+        case CommentsActionTypes.ADD_COMMENT :
+            return {
+                ...state,
+                isLoading: false,
+                error: null,
+                comments: [...state.comments, action.payload]
+            }
         default: return state
     }
 }
@@ -42,5 +48,14 @@ export const getCommentsByPostIdThunk = (postId: number) => async (dispatch: Dis
         dispatch({type: CommentsActionTypes.FETCH_COMMENTS_SUCCESS, payload: response.data})
     } catch (error) {
         dispatch({type: CommentsActionTypes.FETCH_COMMENTS_ERROR, payload: 'Ошибка при загрузке комментариев'})
+    }
+}
+
+export const addCommentToPostThunk = (newComment: any) => async (dispatch: Dispatch<CommentsActions>) => {
+    try {
+        dispatch({type: CommentsActionTypes.FETCH_COMMENTS})
+        const response = axios.post(`http://localhost:5000/comments`)
+    } catch (error) {
+
     }
 }

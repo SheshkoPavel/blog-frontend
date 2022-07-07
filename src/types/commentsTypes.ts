@@ -1,10 +1,11 @@
 export enum CommentsActionTypes {
     FETCH_COMMENTS = 'FETCH_COMMENTS',
     FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS',
-    FETCH_COMMENTS_ERROR = 'FETCH_COMMENTS_ERROR'
+    FETCH_COMMENTS_ERROR = 'FETCH_COMMENTS_ERROR',
+    ADD_COMMENT = 'ADD_COMMENT'
 }
 
-type commentsArray = {
+export type commentsArray = {
     id: number;
     author: string;
     text: string;
@@ -31,4 +32,10 @@ interface IFetchCommentsActionError {
     payload: string;
 }
 
+interface IAddCommentAction {
+    type: CommentsActionTypes.ADD_COMMENT;
+    payload: commentsArray;
+}
+
 export type CommentsActions = IFetchCommentsAction | IFetchCommentsActionSuccess | IFetchCommentsActionError
+                                | IAddCommentAction
