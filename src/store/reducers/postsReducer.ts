@@ -2,8 +2,10 @@ import {IPostState, PostAction, PostActionTypes} from "../../types/posts";
 
 const initialState: IPostState = {
     posts : [],
+    post: {},
     isLoading: false,
-    error: null
+    error: null,
+    postId: null
 }
 
 export const postsReducer = (state = initialState, action: PostAction): IPostState  => {
@@ -24,6 +26,18 @@ export const postsReducer = (state = initialState, action: PostAction): IPostSta
                 ...state,
                 isLoading: false,
                 error: action.payload
+            }
+        case PostActionTypes.FETCH_ONE_POST:
+            return {
+                ...state,
+                isLoading: false,
+                postId: action.payload
+            }
+        case PostActionTypes.FETCH_ONE_POSTS_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                post: action.payload
             }
         default : return state
     }

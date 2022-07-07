@@ -3,8 +3,9 @@ import './App.css';
 import Header from "./components/Header/Header";
 import {Route, Routes} from "react-router-dom";
 import Footer from "./components/Footer/Footer";
-import Posts from "./components/Posts/Posts";
 import Users from "./components/Users/Users";
+import PostsPage from "./components/Posts/PostsPage";
+import PostItem from "./components/Posts/PostItem";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <main className="content">
 
           <Routes>
-             <Route path="/" element={<Posts />}/>
-             <Route path="/posts" element={<Posts />}/>
+             <Route path="/" element={<PostsPage />}/>
+             <Route path="/posts" element={<PostsPage />}/>
+              <Route path="/posts/:id" element={<PostItem />}/>
               <Route path="/users" element={<Users />}/>
 {/*              <Route path='/login' element={<Login /> }/>*/}
           </Routes>
