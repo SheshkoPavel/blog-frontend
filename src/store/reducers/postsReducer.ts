@@ -4,8 +4,7 @@ const initialState: IPostState = {
     posts : [],
     post: {},
     isLoading: false,
-    error: null,
-    postId: null
+    error: null
 }
 
 export const postsReducer = (state = initialState, action: PostAction): IPostState  => {
@@ -30,8 +29,7 @@ export const postsReducer = (state = initialState, action: PostAction): IPostSta
         case PostActionTypes.FETCH_ONE_POST:
             return {
                 ...state,
-                isLoading: false,
-                postId: action.payload
+                isLoading: false
             }
         case PostActionTypes.FETCH_ONE_POSTS_SUCCESS:
             return {

@@ -6,6 +6,7 @@ import Footer from "./components/Footer/Footer";
 import Users from "./components/Users/Users";
 import PostsPage from "./components/Posts/PostsPage";
 import PostItem from "./components/Posts/PostItem";
+import LoginPage from "./components/LoginPage/LoginPage";
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
           <Routes>
              <Route path="/" element={<PostsPage />}/>
              <Route path="/posts" element={<PostsPage />}/>
-              <Route path="/posts/:id" element={<PostItem />}/>
-              <Route path="/users" element={<Users />}/>
-{/*              <Route path='/login' element={<Login /> }/>*/}
+             <Route path="/posts/:id" element={<PostItem />}/>
+             <Route path="/users" element={<Users />}/>
+             <Route path='/login' element={<LoginPage/> }/>
+             <Route path='/*' element={ <div> Данной страницы не существует</div> } />
           </Routes>
       </main>
       <Footer/>

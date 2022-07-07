@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {fetchOnePost} from "../../store/action-creators/postsAC";
+import Comments from "../Comments/Comments";
 
 const PostItem = () => {
 
@@ -43,18 +44,8 @@ const PostItem = () => {
 
             <div>{post.content}</div>
 
+            <Comments />
 
-            <div style={{textAlign: 'left', marginTop: 30}}>
-                <div>Comments:</div>
-                <div>
-                    <ul>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                    </ul>
-                </div>
-            </div>
 
         </section>
     );

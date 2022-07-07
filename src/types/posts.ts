@@ -3,7 +3,6 @@ export interface IPostState {
     post: any;
     isLoading: boolean;
     error : null | string;
-    postId : null | string;
 }
 
 export enum PostActionTypes {
