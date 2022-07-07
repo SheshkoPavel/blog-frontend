@@ -1,8 +1,16 @@
 export interface IPostState {
-    posts: any[];
+    posts: postsArray[];
     post: any;
     isLoading: boolean;
     error : null | string;
+}
+
+export type postsArray = {
+    id: number;
+    title: string;
+    content: string;
+    status: string;
+    image: string;
 }
 
 export enum PostActionTypes {

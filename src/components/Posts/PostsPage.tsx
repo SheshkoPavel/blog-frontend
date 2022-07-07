@@ -21,6 +21,8 @@ const PostsPage: React.FC = () => {
         return <h1>{error}</h1>
     }
 
+    console.log(posts)
+
     const postsItems = posts.map((post, index) => <Posts key={post.id}
                                                          id={post.id}
                                                          title={post.title}

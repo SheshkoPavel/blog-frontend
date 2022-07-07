@@ -3,7 +3,6 @@ import {NavLink} from "react-router-dom";
 
 const Posts = (props: any) => {
 
-
     return (
         <div style={{marginBottom: 30}}>
             <div>{props.index + '  '}{props.title}</div>

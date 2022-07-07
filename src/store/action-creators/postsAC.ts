@@ -5,8 +5,8 @@ import {PostAction, PostActionTypes} from "../../types/posts";
 export const fetchPosts = () => async (dispatch: Dispatch<PostAction>) => {
     try {
         dispatch({type: PostActionTypes.FETCH_POSTS})
-        const response = await axios.get('http://localhost:5000/posts/all')
-        dispatch({type: PostActionTypes.FETCH_POSTS_SUCCESS, payload: response.data.posts})
+        const response = await axios.get('http://localhost:5000/posts')
+        dispatch({type: PostActionTypes.FETCH_POSTS_SUCCESS, payload: response.data})
     } catch (error) {
         dispatch({
             type: PostActionTypes.FETCH_POSTS_ERROR,

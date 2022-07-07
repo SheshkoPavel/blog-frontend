@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {fetchOnePost} from "../../store/action-creators/postsAC";
 import Comments from "../Comments/Comments";
+import './PostItem.scss'
 
 const PostItem = () => {
 
@@ -42,7 +43,7 @@ const PostItem = () => {
 
             <div>{post.content}</div>
 
-            <Comments postId={postId} />
+            <Comments className='comments__content' postId={postId} />
 
 
         </section>

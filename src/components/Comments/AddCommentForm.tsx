@@ -32,13 +32,13 @@ const AddCommentForm = (props: any) => {
                        placeholder='Напишите своё имя'
                        {...register('author', {required: true, maxLength: 40})}  />
                     <div className={'error__form__validation'}>
-                        {errors.author && "You must write something"}
+                        {errors.author && "Напишите имя! Максимум 40 символов"}
                     </div>
                 <textarea className={'text__area'}
                           placeholder="Напишите текст комментария"
                           {...register("text", {required: true})} />
                     <div className={'error__form__validation'}>
-                        {errors.text && "You must write something"}
+                        {errors.text && "Напишите комментарий!"}
                     </div>
                 <input type="text" value={props.postId} style={{display: "none"}}
                        {...register("postId", {required: true})} />
