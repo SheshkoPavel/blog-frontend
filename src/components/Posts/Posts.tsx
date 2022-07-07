@@ -10,8 +10,6 @@ const Posts = (props: any) => {
             <NavLink to={'/posts/' + props.id}>
                 <img src={`http://localhost:5000/postImages/${props.image}`} alt="post" style={{height: 200}}/>
             </NavLink>
-
-            <div>{props.content}</div>
         </div>
     );
 };

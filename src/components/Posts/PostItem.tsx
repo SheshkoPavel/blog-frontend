@@ -8,12 +8,10 @@ const PostItem = () => {
 
     // Check is any user id in URL. If not, push my profile
     const {id} = useParams()
-    // console.log(id)
 
     const postId = Number(id)
 
     const {post, isLoading, error} = useAppSelector(state => state.posts)
-    console.log(post)
 
     const dispatch = useAppDispatch()
 
@@ -44,7 +42,7 @@ const PostItem = () => {
 
             <div>{post.content}</div>
 
-            <Comments />
+            <Comments postId={postId} />
 
 
         </section>
