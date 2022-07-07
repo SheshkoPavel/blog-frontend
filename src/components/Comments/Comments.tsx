@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {getCommentsByPostIdThunk} from "../../store/reducers/commentsReducer";
+import AddCommentForm from "./AddCommentForm";
 
 const Comments = (props: any) => {
 
@@ -20,11 +21,11 @@ const Comments = (props: any) => {
     }
 
     console.log(comments)
-    const commentsElements = comments.map((c) => <div key={c.id}>{c.text}</div>)
+    const commentsElements = comments.map((c) => <div key={c.id}>{c.author} - {c.text}</div>)
 
     return (
         <section style={{textAlign: 'left', marginTop: 30}}>
-
+            <AddCommentForm postId={props.postId} />
             <div>Comments:</div>
             <div>
                 {commentsElements}
