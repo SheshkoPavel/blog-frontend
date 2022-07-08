@@ -12,10 +12,17 @@ const Header = () => {
 
     return (
         <header className='header'>
-            <div><a href="/">Go home</a> </div>
+            <div><NavLink to={"/"}>Go home</NavLink> </div>
+            <div>
+                {isAuth
+                    ? <img src={`http://localhost:5000/avatars/${user?.avatar}`} alt="avka" style={{height: 80}}/>
+                    : null
+                }
+
+            </div>
             {isAuth
                 ? <button onClick={() => {dispatch(logoutUserThunk())}}>Logout</button>
-                : <NavLink to={'/login'}>Login</NavLink>
+                : <div><NavLink to={'/login'}>Login</NavLink> or <NavLink to={'/register'}>Register</NavLink>   </div>
             }
         </header>
     );

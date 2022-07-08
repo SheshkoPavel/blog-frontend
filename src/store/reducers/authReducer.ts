@@ -51,14 +51,15 @@ export interface IAuthState {
 }
 
 let initialAuthState: IAuthState;
-    if (localStorage.getItem('token') !== null) {
+    if (localStorage.getItem('token') !== null)  {
         const token = localStorage.getItem('token');
         if (token != null) {
             initialAuthState = jwt_decode(token);
-            initialAuthState.isAuth = true
+            initialAuthState.isAuth = true;
+            console.log(jwt_decode(token));
+            console.log(initialAuthState);
         }
     } else initialAuthState = {
-
         user: {
             id: 0,
             name: null,
@@ -117,4 +118,28 @@ export const loginUserThunk = (email: string, password: string) => async (dispat
 export const logoutUserThunk = () => async (dispatch: Dispatch<AuthActions> ) => {
         dispatch({type: AuthActionTypes.AUTH_LOGOUT});
         localStorage.removeItem('token')
+}
+
+export const registerUserThunk = (email: string, password: string, name: string, avatar: any) =>
+    async (dispatch: Dispatch<AuthActions> ) => {
+            let formData = new FormData();
+            formData.append('email', email);
+            formData.append('password', password);
+            formData.append('name', name);
+            formData.append('avatar', avatar);
+
+            const response = await axios.post('http://localhost:5000/auth/registration',
+                formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            );
+            console.log(response)
+            const decoded_response: userAuth = jwt_decode(response.data.token);
+            console.log(decoded_response)
+            localStorage.setItem('token', response.data.token )
+            dispatch({type: AuthActionTypes.AUTH_LOGIN,
+                payload: decoded_response})
+
 }

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {loginUserThunk} from "../../store/reducers/authReducer";
+import './LoginPage.scss'
+import {useNavigate} from "react-router-dom";
 
 
 type Inputs = {
@@ -18,14 +20,12 @@ const LoginPage = () => {
         dispatch(loginUserThunk(data.email, data.password))
     }
 
-    let msg = ''
-    if (isAuth) {
-        msg = 'ЗАЛОГИНЕН'
-    }
-    if (!isAuth) {
-        msg = 'НЕ залогинен'
-    }
-
+    const navigate = useNavigate();
+    useEffect(()=> {
+        if (isAuth) {
+            navigate('/posts');
+        }
+    }, [isAuth])
 
     //Настройка формы
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>()
@@ -34,8 +34,6 @@ const LoginPage = () => {
 
     return (
         <div>
-            <h1>You are {msg}
-            </h1>
             <form onSubmit={handleSubmit(onSubmit)} className={'form__layout'}>
                 <div>Login</div>
                 <input className={'input__area'}
@@ -44,11 +42,12 @@ const LoginPage = () => {
                 <div className={'error__form__validation'}>
                     {errors.email && "Введите email!"}
                 </div>
-                <input className={'text__area'}
+                <input className={'input__area'}
+                       type='password'
                           placeholder="Пароль"
                           {...register("password", {required: true})} />
                 <div className={'error__form__validation'}>
-                    {errors.password && "Напишите комментарий!"}
+                    {errors.password && "Введите пароль!"}
                 </div>
 
                 <input type="submit" className={'send__btn'} />
