@@ -11,7 +11,7 @@ const initialState: ICommentsState = {
     error: null
 }
 
-export const commentsReducer = (state = initialState, action: any): ICommentsState => {
+export const commentsReducer = (state = initialState, action: CommentsActions): ICommentsState => {
     switch (action.type){
         case CommentsActionTypes.FETCH_COMMENTS :
             return {
