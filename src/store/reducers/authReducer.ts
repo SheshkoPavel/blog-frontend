@@ -1,3 +1,4 @@
+import {Dispatch} from "redux";
 
 export enum AuthActionTypes {
     AUTH_LOGIN = 'AUTH_LOGIN',
@@ -87,5 +88,13 @@ export const authReducer = (state = initialAuthState, action: AuthActions) => {
                 state: initialAuthState
             }
         default : return state
+    }
+}
+
+export const loginUser = (email: string, password: string) => async (dispatch: Dispatch<AuthActions>) => {
+    try {
+
+    } catch (error) {
+
     }
 }
