@@ -27,8 +27,6 @@ const LoginPage = () => {
     }
 
 
-
-
     //Настройка формы
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>()
     //При нажатии на кнопку отправить формируется объект data с зарегистрированными полями ()

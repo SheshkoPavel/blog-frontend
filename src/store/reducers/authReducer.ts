@@ -94,7 +94,8 @@ export const authReducer = (state = initialAuthState, action: AuthActions): IAut
             }
         case AuthActionTypes.AUTH_LOGOUT:
             return {
-                ...state
+                ...state,
+                isAuth: false
             }
         default : return state
     }
@@ -105,11 +106,15 @@ export const loginUserThunk = (email: string, password: string) => async (dispat
         const response = await axios.post('http://localhost:5000/auth/login',
             {email: email, password: password})
         const decoded_response: userAuth = jwt_decode(response.data.token);
-        console.log(decoded_response);
         localStorage.setItem('token', response.data.token )
         dispatch({type: AuthActionTypes.AUTH_LOGIN,
             payload: decoded_response})
     } catch (error) {
         dispatch({type: AuthActionTypes.AUTH_LOGIN_ERROR, payload: 'error'})
     }
+}
+
+export const logoutUserThunk = () => async (dispatch: Dispatch<AuthActions> ) => {
+        dispatch({type: AuthActionTypes.AUTH_LOGOUT});
+        localStorage.removeItem('token')
 }

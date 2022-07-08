@@ -1,6 +1,8 @@
 import React from 'react';
 import './Header.scss'
 import {useAppDispatch, useAppSelector} from "../../hooks";
+import {NavLink} from "react-router-dom";
+import {logoutUserThunk} from "../../store/reducers/authReducer";
 
 const Header = () => {
 
@@ -12,8 +14,8 @@ const Header = () => {
         <header className='header'>
             <div><a href="/">Go home</a> </div>
             {isAuth
-                ? <div>Logout</div>
-                : <a href="/login">Login</a>
+                ? <button onClick={() => {dispatch(logoutUserThunk())}}>Logout</button>
+                : <NavLink to={'/login'}>Login</NavLink>
             }
         </header>
     );
