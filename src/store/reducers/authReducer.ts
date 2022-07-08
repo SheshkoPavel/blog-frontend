@@ -1,4 +1,6 @@
 import {Dispatch} from "redux";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 export enum AuthActionTypes {
     AUTH_LOGIN = 'AUTH_LOGIN',
@@ -14,7 +16,7 @@ interface IAuthLogin {
 
 interface IAuthError {
     type: AuthActionTypes.AUTH_LOGIN_ERROR;
-    payload: IAuthState;
+    payload: string;
 }
 
 interface IAuthRegistration {
@@ -24,7 +26,6 @@ interface IAuthRegistration {
 
 interface IAuthLogout {
     type: AuthActionTypes.AUTH_LOGOUT;
-    payload: IAuthState;
 }
 
 export type AuthActions = IAuthLogin | IAuthError | IAuthRegistration | IAuthLogout
@@ -44,27 +45,35 @@ export type userRoles = {
 }
 
 export interface IAuthState {
-    user?: userAuth | null;
-    message?: string | null;
+    user: userAuth | null;
+    message: string | null | undefined;
     isAuth: boolean;
 }
 
-const initialAuthState: IAuthState = {
-    user: {
-        id: 0,
-        name: null,
-        email: '',
-        avatar: null,
-        roles: [
-            {id: 0, value: 'GUEST', description: 'Гость'}
-        ]
-    },
-    message: null,
-    isAuth: false
-}
+let initialAuthState: IAuthState;
+    if (localStorage.getItem('token') !== null) {
+        const token = localStorage.getItem('token');
+        if (token != null) {
+            initialAuthState = jwt_decode(token);
+            initialAuthState.isAuth = true
+        }
+    } else initialAuthState = {
+
+        user: {
+            id: 0,
+            name: null,
+            email: '',
+            avatar: null,
+            roles: [
+                {id: 0, value: 'GUEST', description: 'Гость'}
+            ]
+        },
+        message: null,
+        isAuth: false
+    }
 
 
-export const authReducer = (state = initialAuthState, action: AuthActions) => {
+export const authReducer = (state = initialAuthState, action: AuthActions): IAuthState => {
     switch (action.type) {
         case AuthActionTypes.AUTH_LOGIN :
             return {
@@ -80,21 +89,27 @@ export const authReducer = (state = initialAuthState, action: AuthActions) => {
         case AuthActionTypes.AUTH_REGISTER:
             return {
                 ...state,
-                user: action.payload,
+                user: action.payload.user,
                 isAuth: true
             }
         case AuthActionTypes.AUTH_LOGOUT:
             return {
-                state: initialAuthState
+                ...state
             }
         default : return state
     }
 }
 
-export const loginUser = (email: string, password: string) => async (dispatch: Dispatch<AuthActions>) => {
+export const loginUserThunk = (email: string, password: string) => async (dispatch: Dispatch<AuthActions>) => {
     try {
-
+        const response = await axios.post('http://localhost:5000/auth/login',
+            {email: email, password: password})
+        const decoded_response: userAuth = jwt_decode(response.data.token);
+        console.log(decoded_response);
+        localStorage.setItem('token', response.data.token )
+        dispatch({type: AuthActionTypes.AUTH_LOGIN,
+            payload: decoded_response})
     } catch (error) {
-
+        dispatch({type: AuthActionTypes.AUTH_LOGIN_ERROR, payload: 'error'})
     }
 }
