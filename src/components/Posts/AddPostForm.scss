@@ -1,0 +1,24 @@
+.form__layout {
+  margin: 10px 0 0 0;
+  text-align: center;
+
+  .text__area {
+    width: 550px;
+    height: 180px;
+    resize: none;
+    margin-top: 5px;
+  }
+
+  .input__area {
+    width: 550px;
+  }
+
+  .error__form__validation {
+    color: rebeccapurple;
+  }
+
+  .send__btn {
+    margin-top: 5px;
+    cursor: pointer;
+  }
+}

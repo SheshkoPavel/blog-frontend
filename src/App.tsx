@@ -10,6 +10,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import {useAppDispatch} from "./hooks";
 import {setUserThunk} from "./store/reducers/authReducer";
+import AddPostForm from "./components/Posts/AddPostForm";
 
 function App() {
 
@@ -33,7 +34,9 @@ function App() {
              <Route path="/posts/:id" element={<PostItem />}/>
              <Route path="/users" element={<Users />}/>
              <Route path='/login' element={<LoginPage/> }/>
-              <Route path='/register' element={<RegisterPage /> }/>
+             <Route path='/register' element={<RegisterPage /> }/>
+             <Route path='/addPost' element={<AddPostForm /> }/>
+             <Route path='/myPost' element={<AddPostForm /> }/>
              <Route path='/*' element={ <div> Данной страницы не существует</div> } />
           </Routes>
       </main>

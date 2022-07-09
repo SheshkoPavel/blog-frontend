@@ -3,10 +3,12 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import {fetchPosts} from "../../store/action-creators/postsAC";
 import './PostsPage.scss'
 import Posts from "./Posts";
+import {NavLink} from "react-router-dom";
 
 const PostsPage: React.FC = () => {
 
     const {posts, isLoading, error} = useAppSelector(state => state.posts)
+    const {isAuth} = useAppSelector(state => state.auth)
 
     const dispatch = useAppDispatch()
 
@@ -31,8 +33,22 @@ const PostsPage: React.FC = () => {
     />)
 
     return (
-        <section className='posts__content'>
-            <div style={{marginBottom: 10, fontWeight: "bold"}}>Тут дофига интересных Статей</div>
+        <section className='posts__page__content'>
+
+            {isAuth
+                ? <div>
+                    <NavLink to={"/addPost"} style={{textDecoration: "none", textAlign: "left", marginRight: 10}} >
+                    Добавить Статью
+                    </NavLink>
+                    |
+                    <span style={{textDecoration: "none", marginLeft: 15, cursor: 'pointer'}} >
+                        Мои публикации
+                    </span>
+                </div>
+                : null
+            }
+
+            <div style={{marginBottom: 10, fontWeight: "bold" , textAlign: "center"}}>Опубликованные статьи</div>
             {
                 postsItems
             }

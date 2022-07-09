@@ -24,7 +24,6 @@ const RegisterPage = () => {
 
     const dispatch = useAppDispatch()
     const regUser = (data: Inputs) => {
-        console.log(data);
         dispatch(registerUserThunk(data.email, data.password, data.name, data.avatar[0]));
     }
 
