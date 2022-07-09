@@ -6,7 +6,8 @@ export enum AuthActionTypes {
     AUTH_LOGIN = 'AUTH_LOGIN',
     AUTH_LOGIN_ERROR = 'AUTH_LOGIN_ERROR',
     AUTH_REGISTER = 'AUTH_REGISTER',
-    AUTH_LOGOUT = 'AUTH_LOGOUT'
+    AUTH_LOGOUT = 'AUTH_LOGOUT',
+    SET_USER = 'SET_USER'
 }
 
 interface IAuthLogin {
@@ -28,7 +29,12 @@ interface IAuthLogout {
     type: AuthActionTypes.AUTH_LOGOUT;
 }
 
-export type AuthActions = IAuthLogin | IAuthError | IAuthRegistration | IAuthLogout
+interface IAuthSetUser {
+    type: AuthActionTypes.SET_USER;
+    payload: userAuth;
+}
+
+export type AuthActions = IAuthLogin | IAuthError | IAuthRegistration | IAuthLogout | IAuthSetUser
 
 export type userAuth = {
     id: number;
@@ -98,6 +104,11 @@ export const authReducer = (state = initialAuthState, action: AuthActions): IAut
                 ...state,
                 isAuth: false
             }
+        case AuthActionTypes.SET_USER :
+            return {
+                ...state,
+                user: action.payload
+            }
         default : return state
     }
 }
@@ -142,4 +153,16 @@ export const registerUserThunk = (email: string, password: string, name: string,
             dispatch({type: AuthActionTypes.AUTH_LOGIN,
                 payload: decoded_response})
 
+}
+
+export const setUserThunk = () => async (dispatch: Dispatch<AuthActions> )  => {
+    try {
+        const token = localStorage.getItem('token');
+        if (token != null) {
+            const decodedToken: userAuth = jwt_decode(token);
+            dispatch({type: AuthActionTypes.SET_USER, payload: decodedToken})
+        }
+    } catch (error) {
+        console.log('something goes wrong')
+    }
 }
