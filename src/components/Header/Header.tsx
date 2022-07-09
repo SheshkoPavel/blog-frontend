@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.scss'
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {logoutUserThunk} from "../../store/reducers/authReducer";
 
 const Header = () => {
@@ -12,7 +12,7 @@ const Header = () => {
 
     return (
         <header className='header'>
-            <div><NavLink to={"/"}>Go home</NavLink> </div>
+            <div><a href="/">Go home</a> </div>
             <div>
                 {isAuth && user?.avatar
                     ? <div>

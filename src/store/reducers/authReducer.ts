@@ -10,7 +10,6 @@ let initialAuthState: IAuthState;
         if (token != null) {
             initialAuthState = jwt_decode(token);
             initialAuthState.isAuth = true;
-            console.log(jwt_decode(token));
             console.log(initialAuthState);
         }
     } else initialAuthState = {

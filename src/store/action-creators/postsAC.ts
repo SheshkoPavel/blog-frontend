@@ -1,7 +1,6 @@
 import axios from "axios";
 import {Dispatch} from "redux";
 import {PostAction, PostActionTypes} from "../../types/posts";
-import {log} from "util";
 
 export const fetchPosts = () => async (dispatch: Dispatch<PostAction>) => {
     try {
@@ -45,9 +44,20 @@ export const sendPost = (title: string, content: string, status: string, userId:
                 }
             }
         );
-        dispatch({type: PostActionTypes.FETCH_POSTS_SUCCESS, payload: response.data})
-
     } catch (e) {
         console.log(e)
+    }
+}
+
+export const loadAllUserPostsThunk = (userId: number) => async (dispatch: Dispatch<PostAction>) => {
+    try {
+        dispatch({type: PostActionTypes.FETCH_POSTS});
+        const response = await axios.get(`http://localhost:5000/posts/user/${userId}`);
+        dispatch({type: PostActionTypes.LOAD_ALL_USER_POSTS, payload: response.data});
+    } catch (error) {
+        dispatch({
+            type: PostActionTypes.FETCH_POSTS_ERROR,
+            payload: 'Error loading Post'
+        });
     }
 }

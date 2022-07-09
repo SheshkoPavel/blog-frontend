@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {fetchPosts} from "../../store/action-creators/postsAC";
+import {fetchPosts, loadAllUserPostsThunk} from "../../store/action-creators/postsAC";
 import './PostsPage.scss'
 import Posts from "./Posts";
 import {NavLink} from "react-router-dom";
@@ -8,7 +8,7 @@ import {NavLink} from "react-router-dom";
 const PostsPage: React.FC = () => {
 
     const {posts, isLoading, error} = useAppSelector(state => state.posts)
-    const {isAuth} = useAppSelector(state => state.auth)
+    const {isAuth, user} = useAppSelector(state => state.auth)
 
     const dispatch = useAppDispatch()
 
@@ -32,6 +32,7 @@ const PostsPage: React.FC = () => {
                                                          posts={post}
     />)
 
+
     return (
         <section className='posts__page__content'>
 
@@ -41,7 +42,11 @@ const PostsPage: React.FC = () => {
                     Добавить Статью
                     </NavLink>
                     |
-                    <span style={{textDecoration: "none", marginLeft: 15, cursor: 'pointer'}} >
+                    <span style={{textDecoration: "none", marginLeft: 15, cursor: 'pointer'}}
+                            onClick={()=> {
+                                    if (user?.id) dispatch(loadAllUserPostsThunk(user?.id))
+                                }
+                            }>
                         Мои публикации
                     </span>
                 </div>

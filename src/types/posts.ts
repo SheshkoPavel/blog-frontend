@@ -18,7 +18,8 @@ export enum PostActionTypes {
     FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS',
     FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR',
     FETCH_ONE_POST = 'FETCH_ONE_POST',
-    FETCH_ONE_POSTS_SUCCESS = 'FETCH_ONE_POSTS_SUCCESS'
+    FETCH_ONE_POSTS_SUCCESS = 'FETCH_ONE_POSTS_SUCCESS',
+    LOAD_ALL_USER_POSTS = 'LOAD_ALL_USER_POSTS'
 }
 
 interface IFetchPostsAction {
@@ -46,8 +47,14 @@ interface IFetchOnePostSuccessAction {
     payload: object;
 }
 
+interface ILoadAllUserPosts {
+    type: PostActionTypes.LOAD_ALL_USER_POSTS;
+    payload: any[];
+}
+
 export type PostAction = IFetchPostsAction
     | IFetchPostsSuccessAction
     | IFetchPostsErrorAction
     | IFetchOnePostAction
     | IFetchOnePostSuccessAction
+    | ILoadAllUserPosts

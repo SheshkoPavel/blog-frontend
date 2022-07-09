@@ -37,6 +37,12 @@ export const postsReducer = (state = initialState, action: PostAction): IPostSta
                 isLoading: false,
                 post: action.payload
             }
+        case PostActionTypes.LOAD_ALL_USER_POSTS:
+            return {
+                ...state,
+                isLoading: false,
+                posts: action.payload
+            }
         default : return state
     }
 }

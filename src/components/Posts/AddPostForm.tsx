@@ -2,8 +2,8 @@ import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {SubmitHandler, useForm} from "react-hook-form";
 import './AddPostForm.scss'
-import {registerUserThunk} from "../../store/reducers/authReducer";
-import {sendPost} from "../../store/action-creators/postsAC";
+import {fetchPosts, sendPost} from "../../store/action-creators/postsAC";
+import {Navigate, useNavigate} from "react-router-dom";
 
 type Inputs = {
     title: string;
@@ -19,8 +19,10 @@ const AddPostForm = () => {
     const {user, isAuth, message} = useAppSelector(state => state.auth)
     const dispatch = useAppDispatch()
 
+    const navigate = useNavigate();
     const addPost = (data: Inputs) => {
         dispatch(sendPost(data.title, data.content, data.status, data.userId, data.image[0]));
+        navigate('/posts')
     }
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>()
