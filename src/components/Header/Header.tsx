@@ -14,7 +14,7 @@ const Header = () => {
         <header className='header'>
             <div><NavLink to={"/"}>Go home</NavLink> </div>
             <div>
-                {isAuth
+                {isAuth && user?.avatar
                     ? <div>
                         <div>
                             <img src={`http://localhost:5000/avatars/${user?.avatar}`} alt="avka" style={{height: 80}}/>

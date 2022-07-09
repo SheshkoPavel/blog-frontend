@@ -40,12 +40,14 @@ const RegisterPage = () => {
                 <div>Регистрация пользователя:</div>
                 <input className={'input__area'}
                        placeholder='email'
+                       autoComplete='on'
                        {...register('email', {required: true})}  />
                 <div className={'error__form__validation'}>
                     {errors.email && "Введите email!"}
                 </div>
                 <input  type='password'
                         className={'input__area'}
+                        autoComplete='on'
                        placeholder="Пароль"
                        {...register("password", {required: true})} />
                 <div className={'error__form__validation'}>
@@ -57,7 +59,7 @@ const RegisterPage = () => {
                 <div className={'error__form__validation'}>
                     {errors.email && "Введите имя пользователя!"}
                 </div>
-                <input  type="file"
+                Прикрепите аватар в формате jpg <input  type="file"
                        {...register('avatar', {required: true})}  />
 
                  <br/>

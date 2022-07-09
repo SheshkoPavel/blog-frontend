@@ -38,14 +38,16 @@ const LoginPage = () => {
                 <div>Login</div>
                 <input className={'input__area'}
                        placeholder='email'
+                       autoComplete='on'
                        {...register('email', {required: true})}  />
                 <div className={'error__form__validation'}>
                     {errors.email && "Введите email!"}
                 </div>
                 <input className={'input__area'}
                        type='password'
-                          placeholder="Пароль"
-                          {...register("password", {required: true})} />
+                       autoComplete='on'
+                       placeholder="Пароль"
+                       {...register("password", {required: true})} />
                 <div className={'error__form__validation'}>
                     {errors.password && "Введите пароль!"}
                 </div>
