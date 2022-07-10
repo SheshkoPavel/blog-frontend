@@ -97,3 +97,17 @@ export const postToDeletedThunk = (postId: number) => async (dispatch: Dispatch<
         });
     }
 }
+
+export const editPostThunk = (updateId: number, newPostTitle: string, newPostContent: string) => async (dispatch: Dispatch<PostAction>) => {
+    try {
+        await axios.patch('http://localhost:5000/posts', {updateId: updateId,
+            newPostTitle: newPostTitle, newPostContent: newPostContent});
+        const response = await axios.get(`http://localhost:5000/posts/${updateId}`)
+        dispatch({type: PostActionTypes.FETCH_ONE_POSTS_SUCCESS, payload: response.data})
+    } catch (error) {
+        dispatch({
+            type: PostActionTypes.FETCH_POSTS_ERROR,
+            payload: 'Error loading Post'
+        });
+    }
+}

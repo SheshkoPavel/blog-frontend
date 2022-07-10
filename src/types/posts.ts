@@ -52,6 +52,7 @@ interface ILoadAllUserPosts {
     payload: any[];
 }
 
+
 export type PostAction = IFetchPostsAction
     | IFetchPostsSuccessAction
     | IFetchPostsErrorAction

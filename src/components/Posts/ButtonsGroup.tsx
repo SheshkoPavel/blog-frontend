@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {postToDeletedThunk, postToPublishedThunk, postToSavedThunk} from "../../store/action-creators/postsAC";
 import {useAppDispatch} from "../../hooks";
+import EditPostForm from "./EditPostForm";
 
 const ButtonsGroup = (props: any) => {
 
     const dispatch = useAppDispatch()
+    const [state, setState] = useState(false)
 
     return (
         <div>
@@ -18,7 +20,7 @@ const ButtonsGroup = (props: any) => {
                                     В черновики
                                 </button>
                             </a>
-                            <button style={{marginRight: 5}}>Редактировать статью</button>
+
                             <a href="/">
                                 <button onClick={() => {
                                     dispatch(postToDeletedThunk(props.post.id));
@@ -34,7 +36,13 @@ const ButtonsGroup = (props: any) => {
                                     Опубликовать
                                 </button>
                             </a>
-                            <button style={{marginRight: 5}}>Редактировать статью</button>
+                            <button style={{marginRight: 5}}
+                                    onClick={() => {
+                                        setState(true)
+                                    } }
+                            >
+                                Редактировать статью
+                            </button>
                             <a href="/">
                                 <button onClick={() => {
                                     dispatch(postToDeletedThunk(props.post.id));
@@ -43,6 +51,11 @@ const ButtonsGroup = (props: any) => {
                             </a>
 
                         </div>
+            }
+
+            { state
+              ? <EditPostForm post={props} setState={setState} />
+              :  null
             }
 
         </div>
