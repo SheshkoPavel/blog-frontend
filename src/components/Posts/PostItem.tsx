@@ -1,20 +1,27 @@
 import React, {useEffect} from 'react';
-import {useParams} from "react-router-dom";
+import {Link, NavLink, useNavigate, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {fetchOnePost} from "../../store/action-creators/postsAC";
+import {
+    fetchOnePost,
+    postToDeletedThunk,
+    postToPublishedThunk,
+    postToSavedThunk
+} from "../../store/action-creators/postsAC";
 import Comments from "../Comments/Comments";
 import './PostItem.scss'
+import ButtonsGroup from "./ButtonsGroup";
 
 const PostItem = () => {
 
-    // Check is any user id in URL. If not, push my profile
-    const {id} = useParams()
 
+    const {id} = useParams()
     const postId = Number(id)
 
     const {post, isLoading, error} = useAppSelector(state => state.posts)
+    const {isAuth, user} = useAppSelector(state => state.auth)
 
     const dispatch = useAppDispatch()
+    const navigate = useNavigate();
 
     useEffect(()=>{
         if (id !== undefined){
@@ -32,9 +39,9 @@ const PostItem = () => {
 
     return (
         <section className='posts__content'>
-            <div >
-                Статья под номером {id}
-            </div>
+            <h1 >
+               {post.title}
+            </h1>
             {
                 post.image ?
                     <img src={`http://localhost:5000/postImages/${post.image}`} alt="post main" style={{height: 200}}/>
@@ -42,6 +49,11 @@ const PostItem = () => {
             }
 
             <div>{post.content}</div>
+
+            {isAuth && user?.id === post.userId
+                ?  <ButtonsGroup post={post} />
+                : null
+            }
 
             <Comments className='comments__content' postId={postId} />
 

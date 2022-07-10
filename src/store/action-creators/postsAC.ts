@@ -61,3 +61,39 @@ export const loadAllUserPostsThunk = (userId: number) => async (dispatch: Dispat
         });
     }
 }
+
+export const postToSavedThunk = (postId: number) => async (dispatch: Dispatch<PostAction>) => {
+    try {
+        await axios.patch('http://localhost:5000/posts', {updateId: postId, newPostStatus: 'SAVED'});
+
+    } catch (error) {
+        dispatch({
+            type: PostActionTypes.FETCH_POSTS_ERROR,
+            payload: 'Error loading Post'
+        });
+    }
+}
+
+export const postToPublishedThunk = (postId: number) => async (dispatch: Dispatch<PostAction>) => {
+    try {
+        await axios.patch('http://localhost:5000/posts', {updateId: postId, newPostStatus: 'PUBLISHED'});
+
+    } catch (error) {
+        dispatch({
+            type: PostActionTypes.FETCH_POSTS_ERROR,
+            payload: 'Error loading Post'
+        });
+    }
+}
+
+export const postToDeletedThunk = (postId: number) => async (dispatch: Dispatch<PostAction>) => {
+    try {
+        await axios.patch('http://localhost:5000/posts', {updateId: postId, newPostStatus: 'DELETED'});
+
+    } catch (error) {
+        dispatch({
+            type: PostActionTypes.FETCH_POSTS_ERROR,
+            payload: 'Error loading Post'
+        });
+    }
+}
