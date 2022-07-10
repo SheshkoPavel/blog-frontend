@@ -21,7 +21,9 @@ const PostItem = () => {
     const {isAuth, user} = useAppSelector(state => state.auth)
 
     const dispatch = useAppDispatch()
-    const navigate = useNavigate();
+
+
+    console.log(user)
 
     useEffect(()=>{
         if (id !== undefined){

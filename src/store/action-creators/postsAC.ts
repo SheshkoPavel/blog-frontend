@@ -31,6 +31,7 @@ export const fetchOnePost = (id: string) => async (dispatch: Dispatch<PostAction
 export const sendPost = (title: string, content: string, status: string, userId: number, image: any) =>
     async (dispatch: Dispatch<PostAction> ) => {
     try {
+        const token = localStorage.getItem('token');
         let formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
@@ -40,7 +41,8 @@ export const sendPost = (title: string, content: string, status: string, userId:
         const response = await axios.post('http://localhost:5000/posts',
             formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`
                 }
             }
         );
@@ -64,7 +66,13 @@ export const loadAllUserPostsThunk = (userId: number) => async (dispatch: Dispat
 
 export const postToSavedThunk = (postId: number) => async (dispatch: Dispatch<PostAction>) => {
     try {
-        await axios.patch('http://localhost:5000/posts', {updateId: postId, newPostStatus: 'SAVED'});
+        const token = localStorage.getItem('token');
+        await axios.patch('http://localhost:5000/posts', {updateId: postId, newPostStatus: 'SAVED'} ,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
 
     } catch (error) {
         dispatch({
@@ -76,7 +84,13 @@ export const postToSavedThunk = (postId: number) => async (dispatch: Dispatch<Po
 
 export const postToPublishedThunk = (postId: number) => async (dispatch: Dispatch<PostAction>) => {
     try {
-        await axios.patch('http://localhost:5000/posts', {updateId: postId, newPostStatus: 'PUBLISHED'});
+        const token = localStorage.getItem('token');
+        await axios.patch('http://localhost:5000/posts', {updateId: postId, newPostStatus: 'PUBLISHED'},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
 
     } catch (error) {
         dispatch({
@@ -88,7 +102,13 @@ export const postToPublishedThunk = (postId: number) => async (dispatch: Dispatc
 
 export const postToDeletedThunk = (postId: number) => async (dispatch: Dispatch<PostAction>) => {
     try {
-        await axios.patch('http://localhost:5000/posts', {updateId: postId, newPostStatus: 'DELETED'});
+        const token = localStorage.getItem('token');
+        await axios.patch('http://localhost:5000/posts', {updateId: postId, newPostStatus: 'DELETED'},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
 
     } catch (error) {
         dispatch({
@@ -100,8 +120,13 @@ export const postToDeletedThunk = (postId: number) => async (dispatch: Dispatch<
 
 export const editPostThunk = (updateId: number, newPostTitle: string, newPostContent: string) => async (dispatch: Dispatch<PostAction>) => {
     try {
+        const token = localStorage.getItem('token');
         await axios.patch('http://localhost:5000/posts', {updateId: updateId,
-            newPostTitle: newPostTitle, newPostContent: newPostContent});
+            newPostTitle: newPostTitle, newPostContent: newPostContent} , {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         const response = await axios.get(`http://localhost:5000/posts/${updateId}`)
         dispatch({type: PostActionTypes.FETCH_ONE_POSTS_SUCCESS, payload: response.data})
     } catch (error) {
