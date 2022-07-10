@@ -3,6 +3,7 @@ import './Header.scss'
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {Link, NavLink} from "react-router-dom";
 import {logoutUserThunk} from "../../store/reducers/authReducer";
+import {fetchPosts} from "../../store/action-creators/postsAC";
 
 const Header = () => {
 
@@ -12,7 +13,7 @@ const Header = () => {
 
     return (
         <header className='header'>
-            <div><a href="/">Go home</a> </div>
+            <div onClick={() => {dispatch(fetchPosts())}  }><a href="/">На главную</a> </div>
             <div>
                 {isAuth && user?.avatar
                     ? <div>

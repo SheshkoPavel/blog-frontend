@@ -118,7 +118,8 @@ export const postToDeletedThunk = (postId: number) => async (dispatch: Dispatch<
     }
 }
 
-export const editPostThunk = (updateId: number, newPostTitle: string, newPostContent: string) => async (dispatch: Dispatch<PostAction>) => {
+export const editPostThunk = (updateId: number, newPostTitle: string, newPostContent: string) =>
+    async (dispatch: Dispatch<PostAction>) => {
     try {
         const token = localStorage.getItem('token');
         await axios.patch('http://localhost:5000/posts', {updateId: updateId,
@@ -136,3 +137,30 @@ export const editPostThunk = (updateId: number, newPostTitle: string, newPostCon
         });
     }
 }
+
+export const filterPostsByStatusPublished = () =>
+    async (dispatch: Dispatch<PostAction>) => {
+    try {
+        dispatch({type: PostActionTypes.FETCH_POSTS})
+        dispatch({type: PostActionTypes.FILTER_POSTS_BY_STATUS_PUBLISHED})
+    } catch (error) {
+        dispatch({
+            type: PostActionTypes.FETCH_POSTS_ERROR,
+            payload: 'Error loading Posts'
+        })
+    }
+
+}
+export const filterPostsByStatusSaved = () =>
+    async (dispatch: Dispatch<PostAction>) => {
+        try {
+            dispatch({type: PostActionTypes.FETCH_POSTS})
+            dispatch({type: PostActionTypes.FILTER_POSTS_BY_STATUS_SAVED})
+        } catch (error) {
+            dispatch({
+                type: PostActionTypes.FETCH_POSTS_ERROR,
+                payload: 'Error loading Posts'
+            })
+        }
+
+    }

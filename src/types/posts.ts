@@ -19,7 +19,9 @@ export enum PostActionTypes {
     FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR',
     FETCH_ONE_POST = 'FETCH_ONE_POST',
     FETCH_ONE_POSTS_SUCCESS = 'FETCH_ONE_POSTS_SUCCESS',
-    LOAD_ALL_USER_POSTS = 'LOAD_ALL_USER_POSTS'
+    LOAD_ALL_USER_POSTS = 'LOAD_ALL_USER_POSTS',
+    FILTER_POSTS_BY_STATUS_PUBLISHED = 'FILTER_POSTS_BY_STATUS_PUBLISHED',
+    FILTER_POSTS_BY_STATUS_SAVED = 'FILTER_POSTS_BY_STATUS_SAVED'
 }
 
 interface IFetchPostsAction {
@@ -52,6 +54,14 @@ interface ILoadAllUserPosts {
     payload: any[];
 }
 
+interface IFilterByStatusPublishedAction {
+    type: PostActionTypes.FILTER_POSTS_BY_STATUS_PUBLISHED;
+}
+
+interface IFilterByStatusSavedAction {
+    type: PostActionTypes.FILTER_POSTS_BY_STATUS_SAVED;
+}
+
 
 export type PostAction = IFetchPostsAction
     | IFetchPostsSuccessAction
@@ -59,3 +69,5 @@ export type PostAction = IFetchPostsAction
     | IFetchOnePostAction
     | IFetchOnePostSuccessAction
     | ILoadAllUserPosts
+    | IFilterByStatusPublishedAction
+    | IFilterByStatusSavedAction

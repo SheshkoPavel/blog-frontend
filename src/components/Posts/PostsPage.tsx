@@ -1,6 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {fetchPosts, loadAllUserPostsThunk} from "../../store/action-creators/postsAC";
+import {
+    fetchPosts,
+    filterPostsByStatusPublished,
+    filterPostsByStatusSaved,
+    loadAllUserPostsThunk
+} from "../../store/action-creators/postsAC";
 import './PostsPage.scss'
 import Posts from "./Posts";
 import {NavLink} from "react-router-dom";
@@ -11,6 +16,8 @@ const PostsPage: React.FC = () => {
     const {isAuth, user} = useAppSelector(state => state.auth)
 
     const dispatch = useAppDispatch()
+    const [myPublicationsState, setMyPublicationsState] = useState(false)
+
 
     useEffect(()=> {
         dispatch(fetchPosts())
@@ -44,7 +51,8 @@ const PostsPage: React.FC = () => {
                     |
                     <span style={{textDecoration: "none", marginLeft: 15, cursor: 'pointer'}}
                             onClick={()=> {
-                                    if (user?.id) dispatch(loadAllUserPostsThunk(user?.id))
+                                    if (user?.id) dispatch(loadAllUserPostsThunk(user?.id));
+                                    setMyPublicationsState(true)
                                 }
                             }>
                         Мои публикации
@@ -52,8 +60,23 @@ const PostsPage: React.FC = () => {
                 </div>
                 : null
             }
-
-            <div style={{marginBottom: 10, fontWeight: "bold" , textAlign: "center"}}>Опубликованные статьи</div>
+            {isAuth && myPublicationsState
+                ? <div style={{textAlign: "right", cursor: 'pointer'}} >
+                    <span style={{marginRight: 5}}
+                          onClick={ () => {
+                        dispatch(filterPostsByStatusPublished());
+                        setMyPublicationsState(false);
+                    }}>Показать опубликованные</span>
+                    |
+                    <span style={{marginLeft: 5}}
+                        onClick={ () => {
+                            dispatch(filterPostsByStatusSaved());
+                            setMyPublicationsState(false);
+                        }}>Показать черновики</span>
+                </div>
+                : null
+            }
+            <div style={{marginBottom: 10, fontWeight: "bold" , textAlign: "center"}}>Статьи</div>
             {
                 postsItems
             }

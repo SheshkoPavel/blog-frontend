@@ -43,6 +43,21 @@ export const postsReducer = (state = initialState, action: PostAction): IPostSta
                 isLoading: false,
                 posts: action.payload
             }
+        case PostActionTypes.FILTER_POSTS_BY_STATUS_PUBLISHED :
+            const comingPosts = state.posts;
+            const filteredPostsByStatusPublished = state.posts.filter(post => post.status === 'PUBLISHED')
+            return {
+                ...state,
+                posts: filteredPostsByStatusPublished,
+                isLoading: false
+            }
+        case PostActionTypes.FILTER_POSTS_BY_STATUS_SAVED :
+            const filteredPostsByStatusSaved = state.posts.filter(post => post.status === 'SAVED')
+            return {
+                ...state,
+                posts: filteredPostsByStatusSaved,
+                isLoading: false
+            }
         default : return state
     }
 }

@@ -22,9 +22,6 @@ const PostItem = () => {
 
     const dispatch = useAppDispatch()
 
-
-    console.log(user)
-
     useEffect(()=>{
         if (id !== undefined){
             dispatch(fetchOnePost(id))
