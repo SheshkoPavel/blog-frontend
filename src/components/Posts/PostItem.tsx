@@ -2,10 +2,7 @@ import React, {useEffect} from 'react';
 import {Link, NavLink, useNavigate, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {
-    fetchOnePost,
-    postToDeletedThunk,
-    postToPublishedThunk,
-    postToSavedThunk
+    fetchOnePost
 } from "../../store/action-creators/postsAC";
 import Comments from "../Comments/Comments";
 import './PostItem.scss'
@@ -47,12 +44,12 @@ const PostItem = () => {
                     : '...loading image'
             }
 
-            <div>{post.content}</div>
-
             {isAuth && user?.id === post.userId
                 ?  <ButtonsGroup post={post} />
                 : null
             }
+
+            <div className={'post__text'}>{post.content}</div>
 
             <Comments className='comments__content' postId={postId} />
 

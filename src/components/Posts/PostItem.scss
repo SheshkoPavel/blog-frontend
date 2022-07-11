@@ -1,3 +1,10 @@
 .posts__content {
   text-align: center;
 }
+
+.post__text {
+  text-align: justify; /* Выравнивание по ширине */
+  display: flex;
+  justify-content: center;
+  margin: 10px 300px;
+}

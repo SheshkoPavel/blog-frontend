@@ -33,10 +33,8 @@ const PostsPage: React.FC = () => {
     const postsItems = posts.map((post, index) => <Posts key={post.id}
                                                          id={post.id}
                                                          title={post.title}
-                                                         content={post.content}
                                                          image={post.image}
                                                          index={index + 1}
-                                                         posts={post}
     />)
 
 
