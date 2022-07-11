@@ -13,7 +13,8 @@ const Header = () => {
 
     return (
         <header className='header'>
-            <div onClick={() => {dispatch(fetchPosts())}  }><a href="/">На главную</a> </div>
+            <div style={{marginLeft: 10}}
+                onClick={() => {dispatch(fetchPosts())}  }><a href="/">На главную</a> </div>
             <div>
                 {isAuth && user?.avatar
                     ? <div>
@@ -27,11 +28,15 @@ const Header = () => {
                 }
 
             </div>
-            <div>
+            <div style={{textAlign: "right", marginRight: 10}}>
                 {isAuth
                     ? <button onClick={() => {dispatch(logoutUserThunk())}} style={{flexShrink: 0}} >Logout</button>
                     : <div><NavLink to={'/login'}>Login</NavLink> or <NavLink to={'/register'}>Register</NavLink>   </div>
                 }
+                <div style={{marginTop: 15}}>
+                    <NavLink to={'/stats'}>Статистика приложения</NavLink>
+                </div>
+
             </div>
 
         </header>

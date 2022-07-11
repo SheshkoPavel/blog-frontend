@@ -44,7 +44,6 @@ export const postsReducer = (state = initialState, action: PostAction): IPostSta
                 posts: action.payload
             }
         case PostActionTypes.FILTER_POSTS_BY_STATUS_PUBLISHED :
-            const comingPosts = state.posts;
             const filteredPostsByStatusPublished = state.posts.filter(post => post.status === 'PUBLISHED')
             return {
                 ...state,

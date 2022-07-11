@@ -5,6 +5,24 @@
     justify-content: space-between;
 }*/
 
+.App {
+
+}
+
 .content {
     background: white;
+}
+a {
+    color: black; /* Цвет ссылок */
+    text-decoration: none;
+    transition: 0.3s;
+}
+a:visited {
+    color: black; /* Цвет посещенных ссылок */
+}
+a:active {
+    color: #2579bf; /* Цвет активных ссылок */
+}
+a:hover{
+    color: #2579bf;
 }

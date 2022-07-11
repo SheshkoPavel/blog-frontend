@@ -3,13 +3,15 @@ import {userReducer} from "./reducers/usersReducer";
 import {postsReducer} from "./reducers/postsReducer";
 import {commentsReducer} from "./reducers/commentsReducer";
 import {authReducer} from "./reducers/authReducer";
+import {statisticReducer} from "./reducers/statisticReducer";
 
 export const store = configureStore({
     reducer: {
         users: userReducer,
         posts: postsReducer,
         comments: commentsReducer,
-        auth: authReducer
+        auth: authReducer,
+        stats: statisticReducer
     }
 })
 
