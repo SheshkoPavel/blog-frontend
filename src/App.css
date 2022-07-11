@@ -5,13 +5,11 @@
     justify-content: space-between;
 }*/
 
-.App {
-
-}
 
 .content {
     background: white;
 }
+
 a {
     color: black; /* Цвет ссылок */
     text-decoration: none;

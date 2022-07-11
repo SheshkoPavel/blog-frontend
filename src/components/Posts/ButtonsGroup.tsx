@@ -1,5 +1,10 @@
 import React, {useState} from 'react';
-import {postToDeletedThunk, postToPublishedThunk, postToSavedThunk} from "../../store/action-creators/postsAC";
+import {
+    fetchPosts,
+    postToDeletedThunk,
+    postToPublishedThunk,
+    postToSavedThunk
+} from "../../store/action-creators/postsAC";
 import {useAppDispatch} from "../../hooks";
 import EditPostForm from "./EditPostForm";
 
@@ -16,6 +21,7 @@ const ButtonsGroup = (props: any) => {
                             <a href="/">
                                 <button style={{marginRight: 5}} onClick={() => {
                                     dispatch(postToSavedThunk(props.post.id));
+                                    dispatch(fetchPosts());
                                 } }>
                                     В черновики
                                 </button>
@@ -32,6 +38,7 @@ const ButtonsGroup = (props: any) => {
                             <a href="/">
                                 <button style={{marginRight: 5}} onClick={() => {
                                     dispatch(postToPublishedThunk(props.post.id));
+                                    dispatch(fetchPosts());
                                 } }>
                                     Опубликовать
                                 </button>

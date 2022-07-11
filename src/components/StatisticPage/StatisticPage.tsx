@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {getStatisticThunk} from "../../store/reducers/statisticReducer";
+import './StatisticPage.scss'
 
 const StatisticPage: React.FC = () => {
 
@@ -19,9 +20,9 @@ const StatisticPage: React.FC = () => {
         <div>
             <h1>Статистика приложения:</h1>
             <div>
-                <p>Количество опубликованных постов: {posts.publishedPostsCount}</p>
-                <p>Количество не опубликованных постов (черновиков): {posts.savedPostsCount}</p>
-                <p>Количество комментариев за последние 24 часа: {comments.dailyCommentsCount}</p>
+                <p>Количество опубликованных постов: <span>{posts.publishedPostsCount}</span> </p>
+                <p>Количество не опубликованных постов (черновиков): <span>{posts.savedPostsCount}</span> </p>
+                <p>Количество комментариев за последние 24 часа: <span>{comments.dailyCommentsCount}</span> </p>
             </div>
         </div>
     );

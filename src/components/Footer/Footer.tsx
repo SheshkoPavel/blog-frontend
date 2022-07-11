@@ -8,15 +8,15 @@ const Footer = () => {
     return (
         <footer className='footer'>
             <div className={'github'}>
-                <a href="https://github.com/SheshkoPavel">
+                <a href="https://github.com/SheshkoPavel" target='blank'>
                     <img src={github} alt="github"/> My GITHUB
                 </a>
             </div>
             <div>
                 2022
             </div>
-            <div>
-
+            <div className={'twelveDevs'}>
+                <a href="https://twelvedevs.com/" target='blank'>twelveDevs.com</a>
             </div>
         </footer>
     );

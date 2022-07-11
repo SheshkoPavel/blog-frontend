@@ -1,6 +1,21 @@
 .header {
-    padding: 40px 0;
+    padding: 40px 0 20px 0;
+    border-radius: 20px 20px 0 0;
     display: flex;
     justify-content: space-between;
     background-color: #aaafff;
+
+    .toMain {
+        margin-left: 10px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .userAvatar{
+        text-align: center;
+
+        img {
+            height: 80px;
+        }
+    }
 }

@@ -38,7 +38,7 @@ export const sendPost = (title: string, content: string, status: string, userId:
         formData.append('status', status);
         formData.append('userId', userId.toString());
         formData.append('image', image);
-        const response = await axios.post('http://localhost:5000/posts',
+        await axios.post('http://localhost:5000/posts',
             formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -47,7 +47,7 @@ export const sendPost = (title: string, content: string, status: string, userId:
             }
         );
     } catch (e) {
-        console.log(e)
+       dispatch({type: PostActionTypes.FETCH_POSTS_ERROR, payload: "Ошибка выполнения операции"})
     }
 }
 

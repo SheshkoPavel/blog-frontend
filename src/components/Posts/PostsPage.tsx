@@ -55,28 +55,28 @@ const PostsPage: React.FC = () => {
                                     setMyPublicationsState(true)
                                 }
                             }>
-                        Мои публикации
+                        <NavLink to={'/'}>Мои публикации</NavLink>
                     </span>
                 </div>
                 : null
             }
             {isAuth && myPublicationsState
                 ? <div style={{textAlign: "right", cursor: 'pointer'}} >
-                    <span style={{marginRight: 5}}
+                    <NavLink to={'/'} style={{marginRight: 5}}
                           onClick={ () => {
                         dispatch(filterPostsByStatusPublished());
                         setMyPublicationsState(false);
-                    }}>Показать опубликованные</span>
+                    }}>Показать опубликованные</NavLink>
                     |
-                    <span style={{marginLeft: 5}}
+                    <NavLink to={'/'} style={{marginLeft: 5}}
                         onClick={ () => {
                             dispatch(filterPostsByStatusSaved());
                             setMyPublicationsState(false);
-                        }}>Показать черновики</span>
+                        }}>Показать черновики</NavLink>
                 </div>
                 : null
             }
-            <div style={{marginBottom: 10, fontWeight: "bold" , textAlign: "center"}}>Статьи</div>
+            <h2 className={'posts__title'}>Статьи</h2>
             {
                 postsItems
             }
