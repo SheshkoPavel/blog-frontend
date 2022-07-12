@@ -1,0 +1,19 @@
+.comments__module {
+  text-align: left;
+  margin-top: 30px;
+
+  .comments__title {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 0 10px 250px;
+  }
+
+  .comments__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 900px;
+    margin-left: 250px;
+  }
+
+}

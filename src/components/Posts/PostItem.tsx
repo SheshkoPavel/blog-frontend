@@ -17,6 +17,10 @@ const PostItem = () => {
     const {post, isLoading, error} = useAppSelector(state => state.posts)
     const {isAuth, user} = useAppSelector(state => state.auth)
 
+    const date = new Date(post.createdAt)
+    const niceDate = (date.toLocaleDateString())
+
+
     const dispatch = useAppDispatch()
 
     useEffect(()=>{
@@ -40,7 +44,7 @@ const PostItem = () => {
             </h1>
             {
                 post.image ?
-                    <img src={`http://localhost:5000/postImages/${post.image}`} alt="post main" style={{height: 200}}/>
+                    <img src={`http://localhost:5000/postImages/${post.image}`} alt="post main"/>
                     : '...loading image'
             }
 
@@ -49,7 +53,9 @@ const PostItem = () => {
                 : null
             }
 
-            <div className={'post__text'}>{post.content}</div>
+            <div className={'post__text'}>{post.content}
+                <div className={'post__time'}>{niceDate}</div>
+            </div>
 
             <Comments className='comments__content' postId={postId} />
 

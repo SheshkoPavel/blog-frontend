@@ -39,9 +39,9 @@ const AddPostForm = () => {
 
                 <input className={'input__area'}
                        placeholder='Заголовок'
-                       {...register('title', {required: true})}  />
+                       {...register('title', {required: true, maxLength: 250})}  />
                 <div className={'error__form__validation'}>
-                    {errors.title && "Введите Заголовок статьи!"}
+                    {errors.title && "Введите Заголовок статьи! Максимальная длина 250 символов"}
                 </div>
 
                 <textarea  className={'text__area'}
@@ -60,7 +60,9 @@ const AddPostForm = () => {
                        value={user?.id}
                        {...register('userId', {required: true})}  />
 
-                Изображение к статье <input  type="file"
+                <span>Изображение к статье, в формате .jpg</span>
+                <input  type="file"
+                        className={'input__file'}
                         {...register('image', {required: true})}  />
 
                 <br/>

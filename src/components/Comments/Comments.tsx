@@ -3,6 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import {getCommentsByPostIdThunk} from "../../store/reducers/commentsReducer";
 import AddCommentForm from "./AddCommentForm";
 import CommentItem from "./CommentItem";
+import './Comments.scss'
 
 const Comments = (props: any) => {
 
@@ -29,11 +30,14 @@ const Comments = (props: any) => {
                                                                 />)
 
     return (
-        <section style={{textAlign: 'left', marginTop: 30}}>
+        <section className={'comments__module'}>
             <AddCommentForm postId={props.postId} />
-            <div style={{fontWeight: "bold", fontSize: 20, marginLeft: 250, marginBottom: 10}}>Комментарии:</div>
-            <div style={{display: "flex", flexDirection: "column", justifyContent: "center", maxWidth: 900, marginLeft: 250}}>
-                {commentsElements}
+            <div className={'comments__title'}>Комментарии:</div>
+            <div className={'comments__container'} >
+                {!!commentsElements[1]
+                    ? commentsElements
+                    : <em>Комментариев нет</em>
+                }
             </div>
         </section>
     );

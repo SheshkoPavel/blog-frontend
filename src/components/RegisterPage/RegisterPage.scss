@@ -1,16 +1,10 @@
 .form__layout {
-  margin: 10px 0 0 0;
+  margin: 10px 0 10px 0;
   text-align: center;
-
-  .text__area {
-    width: 550px;
-    height: 180px;
-    resize: none;
-    margin-top: 5px;
-  }
 
   .input__area {
     width: 550px;
+    margin: 5px 0;
   }
 
   .error__form__validation {
@@ -18,7 +12,7 @@
   }
 
   .send__btn {
-    margin-top: 5px;
+    margin-top: 20px;
     cursor: pointer;
   }
 
@@ -29,6 +23,6 @@
   }
 
   .input__file{
-    margin: 10px 0 10px 15px;
+    margin: 10px 0 10px 10px;
   }
 }

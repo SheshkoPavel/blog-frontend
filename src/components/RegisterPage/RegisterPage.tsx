@@ -3,6 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import {registerUserThunk} from "../../store/reducers/authReducer";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
+import './RegisterPage.scss'
 
 type Inputs = {
     email: string;
@@ -37,7 +38,7 @@ const RegisterPage = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className={'form__layout'}>
-                <div>Регистрация пользователя:</div>
+                <h1>Регистрация пользователя:</h1>
                 <input className={'input__area'}
                        placeholder='email'
                        autoComplete='on'
@@ -54,12 +55,13 @@ const RegisterPage = () => {
                     {errors.password && "Введите пароль!"}
                 </div>
                 <input className={'input__area'}
-                       placeholder='name'
+                       placeholder='Ваше имя'
                        {...register('name', {required: true})}  />
                 <div className={'error__form__validation'}>
                     {errors.email && "Введите имя пользователя!"}
                 </div>
-                Прикрепите аватар в формате jpg <input  type="file"
+                <span>Прикрепите аватар в формате jpg</span>
+                <input  type="file" className={'input__file'}
                        {...register('avatar', {required: true})}  />
 
                  <br/>

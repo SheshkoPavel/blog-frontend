@@ -1,10 +1,24 @@
 .posts__content {
   text-align: center;
+
+  img {
+    height: 300px;
+    border-radius: 20px;
+  }
+
 }
 
 .post__text {
   text-align: justify; /* Выравнивание по ширине */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin: 10px 300px;
+}
+
+.post__time {
+  font-style: italic;
+  text-align: right;
+  max-width: 1100px;
+  margin-top: 5px;
 }

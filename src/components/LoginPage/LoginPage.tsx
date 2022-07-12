@@ -29,13 +29,12 @@ const LoginPage = () => {
 
     //Настройка формы
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>()
-    //При нажатии на кнопку отправить формируется объект data с зарегистрированными полями ()
     const onSubmit: SubmitHandler<Inputs> = data => login(data);
 
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className={'form__layout'}>
-                <div>Login</div>
+                <h1>Login</h1>
                 <input className={'input__area'}
                        placeholder='email'
                        autoComplete='on'

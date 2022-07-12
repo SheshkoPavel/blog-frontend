@@ -19,6 +19,7 @@ const PostsPage: React.FC = () => {
     const [myPublicationsState, setMyPublicationsState] = useState(false)
 
 
+
     useEffect(()=> {
         dispatch(fetchPosts())
     }, [])

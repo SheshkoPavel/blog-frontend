@@ -21,15 +21,12 @@ const AddCommentForm = (props: any) => {
 
     //Настройка формы
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>()
-    //При нажатии на кнопку отправить формируется объект data с зарегистрированными полями ()
     const onSubmit: SubmitHandler<Inputs> = data => addComment(data);
 
 
     return (
-        <div>
-
             <form onSubmit={handleSubmit(onSubmit)} className={'form__layout'}>
-                <div>Добавить комментарий к статье</div>
+                <div className={'title'}>Добавить комментарий к статье</div>
 
                 {isAuth && user?.name
                     ? <div>
@@ -50,15 +47,15 @@ const AddCommentForm = (props: any) => {
 
                 <textarea className={'text__area'}
                           placeholder="Напишите текст комментария"
-                          {...register("text", {required: true})} />
+                          {...register("text", {required: true, maxLength: 250})} />
                     <div className={'error__form__validation'}>
-                        {errors.text && "Напишите комментарий!"}
+                        {errors.text && "Напишите комментарий! Длина не должна превышать 250 символов"}
                     </div>
                 <input type="text" value={props.postId} style={{display: "none"}}
                        {...register("postId", {required: true})} />
                 <input type="submit" className={'send__btn'} />
             </form>
-        </div>
+
     );
 };
 

@@ -10,7 +10,6 @@ let initialAuthState: IAuthState;
         if (token != null) {
             initialAuthState = jwt_decode(token);
             initialAuthState.isAuth = true;
-            console.log(initialAuthState);
         }
     } else initialAuthState = {
         user: {
@@ -93,9 +92,9 @@ export const registerUserThunk = (email: string, password: string, name: string,
                     }
                 }
             );
-            console.log(response)
+
             const decoded_response: userAuth = jwt_decode(response.data.token);
-            console.log(decoded_response)
+
             localStorage.setItem('token', response.data.token )
             dispatch({type: AuthActionTypes.AUTH_LOGIN,
                 payload: decoded_response})

@@ -16,7 +16,7 @@ const Footer = () => {
                 2022
             </div>
             <div className={'twelveDevs'}>
-                <a href="https://twelvedevs.com/" target='blank'>twelveDevs.com</a>
+                <a href="https://twelvedevs.com/" target='blank'>twelvedevs.com</a>
             </div>
         </footer>
     );

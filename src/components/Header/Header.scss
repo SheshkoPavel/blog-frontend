@@ -13,9 +13,11 @@
 
     .userAvatar{
         text-align: center;
+        font-weight: bold;
 
         img {
             height: 80px;
+            border-radius: 20px;
         }
     }
 }
