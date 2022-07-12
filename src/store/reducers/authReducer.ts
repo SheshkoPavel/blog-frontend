@@ -53,7 +53,8 @@ export const authReducer = (state = initialAuthState, action: AuthActions): IAut
         case AuthActionTypes.SET_USER :
             return {
                 ...state,
-                user: action.payload
+                user: action.payload,
+                message: action.payload.message
             }
         default : return state
     }
@@ -68,7 +69,7 @@ export const loginUserThunk = (email: string, password: string) => async (dispat
         dispatch({type: AuthActionTypes.AUTH_LOGIN,
             payload: decoded_response})
     } catch (error) {
-        dispatch({type: AuthActionTypes.AUTH_LOGIN_ERROR, payload: 'error'})
+        dispatch({type: AuthActionTypes.AUTH_LOGIN_ERROR, payload: 'Ошибка'})
     }
 }
 

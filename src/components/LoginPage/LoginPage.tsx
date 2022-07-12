@@ -13,7 +13,7 @@ type Inputs = {
 
 const LoginPage = () => {
 
-    const {user, isAuth, message} = useAppSelector(state => state.auth)
+    const {isAuth, message} = useAppSelector(state => state.auth)
 
     const dispatch = useAppDispatch()
     const login = (data: Inputs) => {
@@ -42,6 +42,8 @@ const LoginPage = () => {
                 <div className={'error__form__validation'}>
                     {errors.email && "Введите email!"}
                 </div>
+                <div className={'error__message'}>{message}</div>
+
                 <input className={'input__area'}
                        type='password'
                        autoComplete='on'

@@ -38,6 +38,7 @@ export type userAuth = {
     email: string;
     avatar: string | null;
     roles: userRoles[];
+    message?: string;
 }
 
 export type userRoles = {
