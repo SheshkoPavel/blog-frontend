@@ -34,7 +34,7 @@ const Comments = (props: any) => {
             <AddCommentForm postId={props.postId} />
             <div className={'comments__title'}>Комментарии:</div>
             <div className={'comments__container'} >
-                {!!commentsElements[1]
+                {!!commentsElements[0]
                     ? commentsElements
                     : <em>Комментариев нет</em>
                 }

@@ -20,9 +20,9 @@ const AddPostForm = () => {
     const dispatch = useAppDispatch()
 
     const navigate = useNavigate();
-    const addPost = (data: Inputs) => {
-        dispatch(sendPost(data.title, data.content, data.status, data.userId, data.image[0]));
-        dispatch(fetchPosts());
+    const addPost = async (data: Inputs) => {
+       await dispatch(sendPost(data.title, data.content, data.status, data.userId, data.image[0]));
+       await dispatch(fetchPosts());
         navigate('/posts')
     }
 

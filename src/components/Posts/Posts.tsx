@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavLink} from "react-router-dom";
+import {useAppDispatch} from "../../hooks";
+import {fetchPosts} from "../../store/action-creators/postsAC";
 
 interface postsProps {
     index: number;
