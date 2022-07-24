@@ -3,6 +3,7 @@ export interface IPostState {
     post: any;
     isLoading: boolean;
     error : null | string;
+    totalCount: number;
 }
 
 export type postsArray = {
@@ -30,7 +31,10 @@ interface IFetchPostsAction {
 
 interface IFetchPostsSuccessAction {
     type: PostActionTypes.FETCH_POSTS_SUCCESS;
-    payload: any[];
+    payload: {
+        totalCount: number;
+        posts: postsArray[];
+    };
 }
 
 

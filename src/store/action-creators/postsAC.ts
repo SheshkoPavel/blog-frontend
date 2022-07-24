@@ -2,11 +2,18 @@ import axios from "axios";
 import {Dispatch} from "redux";
 import {PostAction, PostActionTypes} from "../../types/posts";
 
-export const fetchPosts = () => async (dispatch: Dispatch<PostAction>) => {
+export const fetchPosts = (limit?: number, page?: number) => async (dispatch: Dispatch<PostAction>) => {
     try {
         dispatch({type: PostActionTypes.FETCH_POSTS})
-        const response = await axios.get('http://localhost:5000/posts')
-        dispatch({type: PostActionTypes.FETCH_POSTS_SUCCESS, payload: response.data})
+        if (limit && page) {
+            const response = await axios.get(`http://localhost:5000/posts?limit=${limit}&page=${page}`);
+            dispatch({type: PostActionTypes.FETCH_POSTS_SUCCESS, payload: response.data});
+        }
+        if (!limit && !page) {
+            const response = await axios.get('http://localhost:5000/posts')
+            dispatch({type: PostActionTypes.FETCH_POSTS_SUCCESS, payload: response.data})
+        }
+
     } catch (error) {
         dispatch({
             type: PostActionTypes.FETCH_POSTS_ERROR,

@@ -4,7 +4,8 @@ const initialState: IPostState = {
     posts : [],
     post: {},
     isLoading: false,
-    error: null
+    error: null,
+    totalCount: 0
 }
 
 export const postsReducer = (state = initialState, action: PostAction): IPostState  => {
@@ -18,7 +19,8 @@ export const postsReducer = (state = initialState, action: PostAction): IPostSta
             return {
                 ...state,
                 isLoading: false,
-                posts: action.payload
+                posts: action.payload.posts,
+                totalCount: action.payload.totalCount
             }
         case PostActionTypes.FETCH_POSTS_ERROR:
             return {
