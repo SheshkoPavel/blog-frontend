@@ -92,18 +92,23 @@ const PostsPage: React.FC = () => {
             {
                 postsItems
             }
-            <div style={{textAlign: "center"}}>
-                {
-                    pages.map((page, index) => <span key={index}
-                                                     style={{margin: '0 5px'}}
-                                                     onClick={() => onPageChange(index +1)}>{page}</span>)
-                }
-                <div>Сколько на странице?</div>
-                <input type="number" min="2" max="10"
-                       onChange={(e) => {
-                           setLimit(Number(e.currentTarget.value))
-                       }} defaultValue={limit}/>
-            </div>
+
+            {!myPublicationsState
+                ? <div style={{textAlign: "center"}}>
+                    {
+                        pages.map((page, index) => <span key={index}
+                                                         style={{margin: '0 5px'}}
+                                                         onClick={() => onPageChange(index +1)}>{page}</span>)
+                    }
+                    <div>Сколько на странице?</div>
+                    <input type="number" min="2" max="10"
+                           onChange={(e) => {
+                               setLimit(Number(e.currentTarget.value))
+                           }} defaultValue={limit}/>
+                </div>
+                : null
+            }
+
 
         </section>
     );
