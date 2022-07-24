@@ -12,13 +12,14 @@ import {NavLink} from "react-router-dom";
 
 const PostsPage: React.FC = () => {
 
-    const {posts, isLoading, error} = useAppSelector(state => state.posts)
+    const {posts, isLoading, error, totalCount} = useAppSelector(state => state.posts)
     const {isAuth, user} = useAppSelector(state => state.auth)
 
     const dispatch = useAppDispatch()
     const [myPublicationsState, setMyPublicationsState] = useState(false)
 
 
+    const [limit, setLimit] = useState(5)
 
     useEffect(()=> {
         dispatch(fetchPosts())
@@ -38,6 +39,18 @@ const PostsPage: React.FC = () => {
                                                          index={index + 1}
     />)
 
+    //Узнаём количество страниц. Делим количество всех элементов на количество элементов на странице, округляем вверх
+    const pagesCount = Math.ceil(totalCount / limit);
+    //Создаём и заполняем массив, равный количеству страниц
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
+    }
+
+
+    const onPageChange = (page: number) => {
+        dispatch(fetchPosts(limit, page))
+    }
 
     return (
         <section className='posts__page__content'>
@@ -79,6 +92,19 @@ const PostsPage: React.FC = () => {
             {
                 postsItems
             }
+            <div style={{textAlign: "center"}}>
+                {
+                    pages.map((page, index) => <span key={index}
+                                                     style={{margin: '0 5px'}}
+                                                     onClick={() => onPageChange(index +1)}>{page}</span>)
+                }
+                <div>Сколько на странице?</div>
+                <input type="number" min="2" max="10"
+                       onChange={(e) => {
+                           setLimit(Number(e.currentTarget.value))
+                       }} defaultValue={limit}/>
+            </div>
+
         </section>
     );
 };
