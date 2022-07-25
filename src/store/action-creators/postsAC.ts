@@ -171,3 +171,14 @@ export const filterPostsByStatusSaved = () =>
         }
 
     }
+
+export const addMultiAuthor = (postId: number, email: string) =>
+    async (dispatch: Dispatch<PostAction>) => {
+        try {
+            const user = await axios.post(`http://localhost:5000/users/one`, {email: email});
+            await axios.post(`http://localhost:5000/users/post`, {postId: postId, userId: user.data.id});
+        } catch (e) {
+            console.log(e)
+        }
+
+    }

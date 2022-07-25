@@ -12,6 +12,7 @@ export type postsArray = {
     content: string;
     status: string;
     image: string;
+    author: any[];
 }
 
 export enum PostActionTypes {

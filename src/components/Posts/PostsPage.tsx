@@ -97,7 +97,7 @@ const PostsPage: React.FC = () => {
                 ? <div style={{textAlign: "center"}}>
                     {
                         pages.map((page, index) => <span key={index}
-                                                         style={{margin: '0 5px'}}
+                                                         style={{margin: '0 5px', cursor: "pointer"}}
                                                          onClick={() => onPageChange(index +1)}>{page}</span>)
                     }
                     <div>Сколько на странице?</div>
@@ -108,7 +108,6 @@ const PostsPage: React.FC = () => {
                 </div>
                 : null
             }
-
 
         </section>
     );

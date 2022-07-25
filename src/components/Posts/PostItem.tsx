@@ -21,6 +21,11 @@ const PostItem = () => {
     const niceDate = (date.toLocaleDateString())
 
 
+    let hasRights;
+    if (post.author && user) {
+        hasRights = post.author.some((el: any) => el.id === user.id);
+    }
+
     const dispatch = useAppDispatch()
 
     useEffect(()=>{
@@ -48,7 +53,7 @@ const PostItem = () => {
                     : '...loading image'
             }
 
-            {isAuth && user?.id === post.userId
+            {(isAuth && user?.id === post.userId) || (isAuth && hasRights)
                 ?  <ButtonsGroup post={post} />
                 : null
             }
