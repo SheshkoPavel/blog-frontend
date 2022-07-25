@@ -17,7 +17,6 @@ const ButtonsGroup = (props: any) => {
     const [multiAuthor, setMultiAuthor] = useState('')
     const [sanded, setSanded] = useState(false)
 
-
     return (
         <div>
             {
@@ -108,6 +107,7 @@ const ButtonsGroup = (props: any) => {
                 ? <div style={{color: "red"}}>Отправлено</div>
                 : null
             }
+
 
         </div>
     );
