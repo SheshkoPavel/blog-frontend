@@ -177,11 +177,12 @@ export const addMultiAuthor = (postId: number, email: string) =>
         try {
             const user = await axios.post(`http://localhost:5000/users/one`, {email: email});
             const post = await axios.get(`http://localhost:5000/posts/${postId}`);
-            console.log(post.data);
-            const hasPostAuthorId = post.data.author.some((el: any) => el.id === postId);
-            console.log(hasPostAuthorId);
+            const hasPostAuthorId = post.data.author.some((el: any) => el.id === user.data.id);
             if (!!hasPostAuthorId) {
-                console.log('Пользователь уже добавлен в соавторы!')
+                dispatch({
+                    type: PostActionTypes.LOAD_MESSAGE_FROM_SERVER,
+                    payload: 'Пользователь уже добавлен в соавторы!'
+                });
             } else {
                 await axios.post(`http://localhost:5000/users/post`, {postId: postId, userId: user.data.id});
             }

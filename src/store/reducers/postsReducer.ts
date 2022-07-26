@@ -5,7 +5,8 @@ const initialState: IPostState = {
     post: {},
     isLoading: false,
     error: null,
-    totalCount: 0
+    totalCount: 0,
+    messageFromServer: null
 }
 
 export const postsReducer = (state = initialState, action: PostAction): IPostState  => {
@@ -58,6 +59,11 @@ export const postsReducer = (state = initialState, action: PostAction): IPostSta
                 ...state,
                 posts: filteredPostsByStatusSaved,
                 isLoading: false
+            }
+        case PostActionTypes.LOAD_MESSAGE_FROM_SERVER:
+            return {
+                ...state,
+                messageFromServer: action.payload
             }
         default : return state
     }

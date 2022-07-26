@@ -92,7 +92,7 @@ const ButtonsGroup = (props: any) => {
             { multiAuthorState
                 ? <div>
                     <div>Добавить соавтора</div>
-                    <input type="text" onChange={(e) =>
+                    <input type="email" onChange={(e) =>
                     {setMultiAuthor(e.currentTarget.value)}}
                     />
                     <button onClick={() => {

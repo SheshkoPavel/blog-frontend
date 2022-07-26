@@ -4,6 +4,7 @@ export interface IPostState {
     isLoading: boolean;
     error : null | string;
     totalCount: number;
+    messageFromServer: string | null;
 }
 
 export type postsArray = {
@@ -23,7 +24,8 @@ export enum PostActionTypes {
     FETCH_ONE_POSTS_SUCCESS = 'FETCH_ONE_POSTS_SUCCESS',
     LOAD_ALL_USER_POSTS = 'LOAD_ALL_USER_POSTS',
     FILTER_POSTS_BY_STATUS_PUBLISHED = 'FILTER_POSTS_BY_STATUS_PUBLISHED',
-    FILTER_POSTS_BY_STATUS_SAVED = 'FILTER_POSTS_BY_STATUS_SAVED'
+    FILTER_POSTS_BY_STATUS_SAVED = 'FILTER_POSTS_BY_STATUS_SAVED',
+    LOAD_MESSAGE_FROM_SERVER = 'LOAD_MESSAGE_FROM_SERVER'
 }
 
 interface IFetchPostsAction {
@@ -67,6 +69,10 @@ interface IFilterByStatusSavedAction {
     type: PostActionTypes.FILTER_POSTS_BY_STATUS_SAVED;
 }
 
+interface ILoadMessageFromServer {
+    type: PostActionTypes.LOAD_MESSAGE_FROM_SERVER;
+    payload: string;
+}
 
 export type PostAction = IFetchPostsAction
     | IFetchPostsSuccessAction
@@ -76,3 +82,4 @@ export type PostAction = IFetchPostsAction
     | ILoadAllUserPosts
     | IFilterByStatusPublishedAction
     | IFilterByStatusSavedAction
+    | ILoadMessageFromServer

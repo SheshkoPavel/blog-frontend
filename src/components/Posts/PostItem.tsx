@@ -14,7 +14,7 @@ const PostItem = () => {
     const {id} = useParams()
     const postId = Number(id)
 
-    const {post, isLoading, error} = useAppSelector(state => state.posts)
+    const {post, isLoading, error, messageFromServer} = useAppSelector(state => state.posts)
     const {isAuth, user} = useAppSelector(state => state.auth)
 
     const date = new Date(post.createdAt)
@@ -55,6 +55,10 @@ const PostItem = () => {
 
             {(isAuth && user?.id === post.userId) || (isAuth && hasRights)
                 ?  <ButtonsGroup post={post} />
+                : null
+            }
+            {messageFromServer
+                ? <div style={{fontWeight: "bold", color: 'red', marginTop: 10}}>{messageFromServer}</div>
                 : null
             }
 
